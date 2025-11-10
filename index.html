@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroundCUA: Grounding Computer Use Agents on Human Demonstrations</title>
+    <meta name="description" content="A large-scale human-annotated dataset and state-of-the-art models for desktop grounding in computer use agents.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/icons/anchor.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">GroundCUA</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#dataset" class="nav-link">Dataset</a></li>
+                <li><a href="#model" class="nav-link">Model</a></li>
+                <li><a href="#results" class="nav-link">Results</a></li>
+                <li><a href="#examples" class="nav-link">Examples</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#paper" class="nav-link cta-nav">Paper</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M10 1V3M10 17V19M19 10H17M3 10H1M16.071 16.071L14.657 14.657M5.343 5.343L3.929 3.929M16.071 3.929L14.657 5.343M5.343 14.657L3.929 16.071" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                Grounding Computer Use Agents<br>
+                <span class="gradient-text">on Human Demonstrations</span>
+            </h1>
+            <p class="hero-subtitle">
+                A large-scale, human-annotated dataset and SOTA models<br>
+                for precise UI element grounding in desktop applications
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">3.56M+</div>
+                    <div class="stat-label">Annotations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">56K</div>
+                    <div class="stat-label">Screenshots</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">87</div>
+                    <div class="stat-label">Applications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">SOTA</div>
+                    <div class="stat-label">Performance</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#paper" class="btn btn-primary">
+                    <span>Read Paper</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#dataset" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 14l-4-4m0 0l4-4m-4 4h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Download Dataset</span>
+                </a>
+                <a href="https://github.com/groundcua/groundcua" class="btn btn-secondary" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Code</span>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div> -->
+    </section>
+
+    <div style="display: none;">
+    <!-- Abstract Section -->
+    <section class="abstract-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Overview</h2>
+            </div>
+            <div class="content-box">
+                <div class="abstract-content">
+                    <p>
+                        Building reliable computer-use agents requires <strong>grounding</strong>: accurately connecting natural language instructions to the correct on-screen elements. While large datasets exist for web and mobile interactions, high-quality resources for desktop environments are limited. To address this gap, we introduce <strong>GroundCUA</strong>, a large-scale desktop grounding dataset built from expert human demonstrations. It covers <strong>87 applications</strong> across <strong>12 categories</strong> and includes <strong>56K screenshots</strong>, with every on-screen element carefully annotated for a total of over <strong>3.56M human-verified annotations</strong>. From these demonstrations, we generate diverse instructions that capture a wide range of real-world tasks, providing high-quality data for model training.
+                    </p>
+                    <p>
+                        Using GroundCUA, we develop the <strong>GroundNext</strong> family of models that map instructions to their target UI elements. At both 3B and 7B scales, GroundNext achieves <strong>state-of-the-art results</strong> across five benchmarks using supervised fine-tuning, while requiring <strong>less than one-tenth the training data</strong> of prior work. Reinforcement learning post-training further improves performance, and when evaluated in an agentic setting on the OSWorld benchmark using GPT-4o and o3 as planners, GroundNext attains <strong>comparable or superior results</strong> to models trained with substantially more data. These results demonstrate the critical role of high-quality, expert-driven datasets in advancing general-purpose computer-use agents.
+                    </p>
+                    <div class="teaser-image">
+                        <img src="images/teasor.png" alt="GroundCUA Overview">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Section -->
+    <section id="dataset" class="dataset-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    GroundCUA Dataset
+                </h2>
+                <p class="section-description">
+                    The largest and most diverse human-annotated dataset for desktop grounding
+                </p>
+            </div>
+
+            <div class="content-box">
+                <div class="dataset-showcase">
+                    <div class="dataset-chart">
+                        <p class="chart-caption">Distribution of platforms in GroundCUA</p>
+                        <div class="rotating-chart">
+                            <img src="images/dataset-dist.png" alt="Dataset Distribution">
+                        </div>
+                    </div>
+                    
+                    <div class="dataset-stats-cards">
+                        <div class="stat-card stat-card-primary">
+                            <div class="stat-icon">✓</div>
+                            <div class="stat-number">10,000</div>
+                            <div class="stat-label">TASKS</div>
+                            <p class="stat-description">Diverse human executed computer use tasks across domains</p>
+                        </div>
+                        
+                        <div class="stat-card stat-card-secondary">
+                            <div class="stat-icon">📸</div>
+                            <div class="stat-number">56K</div>
+                            <div class="stat-label">SCREENSHOTS</div>
+                            <p class="stat-description">Densely labeled keyframes from task demonstrations</p>
+                        </div>
+                        
+                        <div class="stat-card stat-card-tertiary">
+                            <div class="stat-icon">💻</div>
+                            <div class="stat-number">87</div>
+                            <div class="stat-label">PLATFORMS (12 CATEGORIES)</div>
+                            <p class="stat-description">Office, creative, development, scientific, and more</p>
+                        </div>
+                        
+                        <div class="stat-card stat-card-accent">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-number">3.56M</div>
+                            <div class="stat-label">ANNOTATIONS</div>
+                            <p class="stat-description">Human-verified bounding boxes with textual labels</p>
+                        </div>
+                        
+                        <div class="stat-card stat-card-success">
+                            <div class="stat-icon">🖼️</div>
+                            <div class="stat-number">0.4-7MP</div>
+                            <div class="stat-label">IMAGE RESOLUTION</div>
+                            <p class="stat-description">High-quality images with clear UI element visibility</p>
+                        </div>
+                        
+                        <div class="stat-card stat-card-warning">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-number">64</div>
+                            <div class="stat-label">ELEMENTS PER IMAGE</div>
+                            <p class="stat-description">Average density with up to 542 elements per screenshot</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="instruction-types">
+                <h3>Instruction Types</h3>
+                <p class="instruction-intro">We generate three types of contextual instructions from our annotations:</p>
+                <div class="instruction-cards">
+                    <div class="instruction-card">
+                        <div class="instruction-header">
+                            <span class="instruction-icon">📝</span>
+                            <h4>Direct</h4>
+                        </div>
+                        <p class="instruction-description">Describe element attributes, position, and surrounding context</p>
+                        <div class="instruction-example">
+                            <code>"Click the magnifying-glass icon next to the search bar"</code>
+                        </div>
+                    </div>
+                    <div class="instruction-card">
+                        <div class="instruction-header">
+                            <span class="instruction-icon">⚡</span>
+                            <h4>Functional</h4>
+                        </div>
+                        <p class="instruction-description">Focus on the intended action of an element</p>
+                        <div class="instruction-example">
+                            <code>"Open a new tab"</code>
+                        </div>
+                    </div>
+                    <div class="instruction-card">
+                        <div class="instruction-header">
+                            <span class="instruction-icon">🧭</span>
+                            <h4>Spatial</h4>
+                        </div>
+                        <p class="instruction-description">Guide based on relative positioning of elements</p>
+                        <div class="instruction-example">
+                            <code>"Click the element to the left of 'Files'"</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Access the Dataset</h3>
+                <p>Download GroundCUA and start building better computer-use agents</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Download Dataset</a>
+                    <a href="#" class="btn btn-secondary">View Documentation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Section -->
+    <section id="model" class="model-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Model</span>
+                <h2 class="section-title">GroundNext Models</h2>
+                <p class="section-description">
+                    State-of-the-art vision-language models for precise UI element grounding
+                </p>
+            </div>
+
+            <div class="content-box">
+                <div class="model-overview">
+                    <div class="model-diagram">
+                    <div class="model-stage">
+                        <div class="stage-icon">📊</div>
+                        <h4>Base Model</h4>
+                        <p>Qwen2.5-VL-Instruct<br>(3B & 7B)</p>
+                    </div>
+                    <div class="stage-arrow">→</div>
+                    <div class="model-stage">
+                        <div class="stage-icon">🎯</div>
+                        <h4>SFT Stage</h4>
+                        <p>700K samples<br>from GroundCUA</p>
+                    </div>
+                    <div class="stage-arrow">→</div>
+                    <div class="model-stage">
+                        <div class="stage-icon">🚀</div>
+                        <h4>RL Stage</h4>
+                        <p>10K samples<br>RLOO optimization</p>
+                    </div>
+                    <div class="stage-arrow">→</div>
+                    <div class="model-stage highlight">
+                        <div class="stage-icon">⭐</div>
+                        <h4>GroundNext</h4>
+                        <p>SOTA Performance<br>Across Benchmarks</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="content-box">
+                <div class="model-features">
+                <div class="model-feature-card">
+                    <h3>Efficient Training</h3>
+                    <p>Achieves state-of-the-art results with <strong>&lt;10% of the training data</strong> used by prior models like JEDI (700K vs 9M samples)</p>
+                </div>
+                <div class="model-feature-card">
+                    <h3>Two-Stage Training</h3>
+                    <p><strong>SFT</strong> on high-quality demonstrations establishes strong baseline, <strong>RL</strong> with distance-based rewards refines performance</p>
+                </div>
+                <div class="model-feature-card">
+                    <h3>Cross-Platform Generalization</h3>
+                    <p>Trained on desktop data, but generalizes well to <strong>mobile and web</strong> environments</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="content-box">
+                <div class="model-comparison">
+                <h3>Model Performance Comparison</h3>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Size</th>
+                                <th>Training Data</th>
+                                <th>Avg. Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight-row">
+                                <td><strong>GroundNext (SFT)</strong></td>
+                                <td>3B</td>
+                                <td>700K</td>
+                                <td><strong>68.4%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>GUI-Actor</td>
+                                <td>3B</td>
+                                <td>~3M</td>
+                                <td>63.0%</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>GroundNext (RL)</strong></td>
+                                <td>3B</td>
+                                <td>700K + 10K</td>
+                                <td><strong>70.0%</strong></td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>GroundNext (SFT)</strong></td>
+                                <td>7B</td>
+                                <td>700K</td>
+                                <td><strong>71.8%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>JEDI</td>
+                                <td>7B</td>
+                                <td>~9M</td>
+                                <td>63.9%</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>GroundNext (RL)</strong></td>
+                                <td>7B</td>
+                                <td>700K + 10K</td>
+                                <td><strong>73.0%</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+            <div class="content-box">
+                <div class="rl-details">
+                <h3>Reinforcement Learning Approach</h3>
+                <div class="rl-content">
+                    <div class="rl-text">
+                        <h4>Simple Yet Effective</h4>
+                        <p>
+                            We use <strong>RLOO (Relative Leave-One-Out)</strong> for policy optimization with a distance-based reward function. Unlike complex RL-tuned models that use specialized reward functions and auxiliary objectives, our approach is straightforward:
+                        </p>
+                        <ul>
+                            <li>Distance-based discrete reward scheme</li>
+                            <li>Normalized rewards between -1 and 1</li>
+                            <li>Predictions inside the box encouraged toward center</li>
+                            <li>Graduated penalties for predictions outside box</li>
+                        </ul>
+                        <p class="insight-text">
+                            <strong>Key Finding:</strong> SFT with high-quality data captures most performance gains. RL provides consistent but modest improvements, suggesting that data quality is paramount.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Download the Models</h3>
+                <p>Access GroundNext-3B and GroundNext-7B models for your research</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Download Models</a>
+                    <a href="#" class="btn btn-secondary">HuggingFace</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Examples</span>
+                <h2 class="section-title">Application Coverage</h2>
+                <p class="section-description">
+                    87 open-source desktop applications across 12 diverse categories
+                </p>
+            </div>
+
+            <div class="app-categories">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All Applications</button>
+                    <button class="category-tab" data-category="creative">Creative</button>
+                    <button class="category-tab" data-category="office">Office Suite</button>
+                    <button class="category-tab" data-category="development">Development</button>
+                    <button class="category-tab" data-category="scientific">Scientific</button>
+                </div>
+
+                <div class="app-gallery">
+                    <div class="app-card" data-category="creative">
+                        <div class="app-image">
+                            <img src="images/apps/gimp.png" alt="GIMP">
+                        </div>
+                        <div class="app-info">
+                            <h4>GIMP</h4>
+                            <p>Image editing with complex filters and tools</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="creative">
+                        <div class="app-image">
+                            <img src="images/apps/freecad.png" alt="FreeCAD">
+                        </div>
+                        <div class="app-info">
+                            <h4>FreeCAD</h4>
+                            <p>3D parametric modeling software</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="office">
+                        <div class="app-image">
+                            <img src="images/apps/LibreOfficeCalc.png" alt="LibreOffice Calc">
+                        </div>
+                        <div class="app-info">
+                            <h4>LibreOffice Calc</h4>
+                            <p>Spreadsheet application with rich functionality</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="creative">
+                        <div class="app-image">
+                            <img src="images/apps/openshot.png" alt="OpenShot">
+                        </div>
+                        <div class="app-info">
+                            <h4>OpenShot</h4>
+                            <p>Video editing and production</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="scientific">
+                        <div class="app-image">
+                            <img src="images/apps/octave.png" alt="Octave">
+                        </div>
+                        <div class="app-info">
+                            <h4>Octave</h4>
+                            <p>Scientific programming language</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="development">
+                        <div class="app-image">
+                            <img src="images/apps/r_studio.png" alt="RStudio">
+                        </div>
+                        <div class="app-info">
+                            <h4>RStudio</h4>
+                            <p>IDE for R programming and statistics</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="office">
+                        <div class="app-image">
+                            <img src="images/apps/zotero.png" alt="Zotero">
+                        </div>
+                        <div class="app-info">
+                            <h4>Zotero</h4>
+                            <p>Reference management software</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="creative">
+                        <div class="app-image">
+                            <img src="images/apps/vlc.png" alt="VLC">
+                        </div>
+                        <div class="app-info">
+                            <h4>VLC Media Player</h4>
+                            <p>Multimedia player and streaming</p>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-category="office">
+                        <div class="app-image">
+                            <img src="images/apps/frappe_books.png" alt="Frappe Books">
+                        </div>
+                        <div class="app-info">
+                            <h4>Frappe Books</h4>
+                            <p>Open-source accounting software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>GroundCUA</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#dataset">Dataset</a>
+                    <a href="#model">Model</a>
+                    <a href="#results">Results</a>
+                    <a href="#paper">Paper</a>
+                    <a href="https://github.com/groundcua/groundcua">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GroundCUA Research Team. Released for open research.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
