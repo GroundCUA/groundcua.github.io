@@ -222,6 +222,19 @@ a:hover {
     font-weight: 700;
 }
 
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
 .logo-text {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -442,6 +455,27 @@ a:hover {
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
     animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-title-with-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.hero-logo-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+    animation: heroLogoFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroLogoFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(5deg); }
+    75% { transform: translateY(8px) rotate(-5deg); }
 }
 
 .gradient-text {
@@ -695,7 +729,7 @@ section {
     border: 1px solid var(--border-color);
     border-left: 4px solid var(--primary);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
+    box-shadow: var (--shadow-md);
     display: flex;
     gap: var(--spacing-sm);
     align-items: flex-start;
@@ -1115,7 +1149,7 @@ section {
     padding: 8px 0;
     padding-left: 24px;
     position: relative;
-    color: var(--text-secondary);
+    color: var (--text-secondary);
 }
 
 .feature-card ul li::before {
@@ -2151,7 +2185,20 @@ section {
     gap: 0.25rem;
 }
 
-.footer-logo span {
+.footer-logo-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer-logo-with-icon span {
     font-size: 1.25rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -2249,6 +2296,21 @@ section {
         font-size: 2.5rem;
     }
     
+    .hero-title-with-logo {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .hero-logo-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
     .hero-subtitle {
         font-size: 1rem;
     }
@@ -2289,6 +2351,11 @@ section {
     
     .footer-logo {
         align-items: center;
+    }
+    
+    .footer-logo-icon {
+        width: 24px;
+        height: 24px;
     }
     
     .footer-links {
