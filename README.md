@@ -52,8 +52,8 @@ groundcua.github.io/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/groundcua/groundcua.github.io.git
-   cd groundcua.github.io
+   git clone https://github.com/ServiceNow/GroundCUA.git
+   cd GroundCUA
    ```
 
 2. **Open locally**
@@ -184,7 +184,7 @@ Contributions are welcome! Please:
 ## 📧 Contact
 
 For questions about the research:
-- Visit the [GitHub repository](https://github.com/groundcua/groundcua)
+- Visit the [GitHub repository](https://github.com/ServiceNow/GroundCUA)
 - Open an issue for website-related problems
 
 ## 🙏 Acknowledgments
