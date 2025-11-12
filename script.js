@@ -394,6 +394,50 @@ console.log('%cGrounding Computer Use Agents on Human Demonstrations', 'color: #
 console.log('%cInterested in our research? Check out our paper and code!', 'color: #A0AEC0; font-size: 12px;');
 
 // ============================================
+// Image Overlay Functionality
+// ============================================
+
+const imageOverlay = document.getElementById('imageOverlay');
+const overlayImage = document.getElementById('overlayImage');
+const overlayCaption = document.getElementById('overlayCaption');
+const overlayClose = document.querySelector('.overlay-close');
+
+// Add click listeners to all app thumbnails
+document.querySelectorAll('.app-card-clickable').forEach(card => {
+    card.addEventListener('click', () => {
+        const img = card.querySelector('.app-thumbnail');
+        imageOverlay.classList.add('active');
+        overlayImage.src = img.src;
+        overlayCaption.textContent = img.alt;
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+});
+
+// Close overlay when clicking the X button
+if (overlayClose) {
+    overlayClose.addEventListener('click', closeOverlay);
+}
+
+// Close overlay when clicking outside the image
+imageOverlay?.addEventListener('click', (e) => {
+    if (e.target === imageOverlay) {
+        closeOverlay();
+    }
+});
+
+// Close overlay with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imageOverlay?.classList.contains('active')) {
+        closeOverlay();
+    }
+});
+
+function closeOverlay() {
+    imageOverlay.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+// ============================================
 // Initialize
 // ============================================
 

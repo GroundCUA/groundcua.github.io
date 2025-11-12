@@ -76,17 +76,17 @@
                 <div class="result-column">
                     <div class="result-value">60.3%</div>
                     <div class="result-description">Desktop Avg</div>
-                    <div class="result-comparison">vs 40.2% UI-TARS-72B</div>
+                    <!-- <div class="result-comparison">vs 40.2% UI-TARS-72B</div> -->
                 </div>
                 <div class="result-column">
                     <div class="result-value">85.8%</div>
                     <div class="result-description">Corss-Platform Avg</div>
-                    <div class="result-comparison">vs 82.3% UI-TARS-72B</div>
+                    <!-- <div class="result-comparison">vs 82.3% UI-TARS-72B</div> -->
                 </div>
                 <div class="result-column">
                     <div class="result-value">50.6%</div>
                     <div class="result-description">OSWorld Agent</div>
-                    <div class="result-comparison">Competitive Proprietory Models</div>
+                    <!-- <div class="result-comparison">Competitive Proprietory Models</div> -->
                 </div>
             </div>
 
@@ -650,27 +650,6 @@
                 </div>
             </div>
 
-            <div class="content-box">
-                <h3>Quick Start</h3>
-                <div class="code-block">
-                    <pre><code class="language-bash"># Install dependencies
-pip install torch transformers pillow
-
-# Download model
-from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
-model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-    "ServiceNow/GroundNext-7B-V0", 
-    torch_dtype=torch.bfloat16, 
-    device_map="auto"
-)
-processor = AutoProcessor.from_pretrained("ServiceNow/GroundNext-7B-V0")
-
-# Run inference
-instruction = "Click on the 'Save' button"
-# ... inference code ...</code></pre>
-                </div>
-            </div>
-
             <div class="cta-box">
                 <h3>Download the Models</h3>
                 <p>Access GroundNext-3B and GroundNext-7B for your research</p>
@@ -688,115 +667,68 @@ instruction = "Click on the 'Save' button"
     <section id="examples" class="examples-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Coverage</span>
-                <h2 class="section-title">87 Desktop Applications</h2>
+                <span class="section-tag">Examples</span>
+                <h2 class="section-title">Sample Applications</h2>
                 <p class="section-description">
-                    Comprehensive coverage across 12 diverse categories
+                    Examples from our dataset covering diverse desktop applications
                 </p>
             </div>
 
-            <div class="app-categories">
-                <div class="category-tabs">
-                    <button class="category-tab active" data-category="all">All</button>
-                    <button class="category-tab" data-category="creative">Creative</button>
-                    <button class="category-tab" data-category="office">Office</button>
-                    <button class="category-tab" data-category="development">Development</button>
-                    <button class="category-tab" data-category="scientific">Scientific</button>
+            <div class="app-gallery-grid">
+                <div class="app-card-clickable">
+                    <img src="images/apps/gimp.png" alt="GIMP - Image editing with complex filters and tools" class="app-thumbnail">
+                    <div class="app-name">GIMP</div>
                 </div>
 
-                <div class="app-gallery">
-                    <div class="app-card" data-category="creative">
-                        <div class="app-image">
-                            <img src="images/apps/gimp.png" alt="GIMP">
-                        </div>
-                        <div class="app-info">
-                            <h4>GIMP</h4>
-                            <p>Image editing with complex filters and tools</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/freecad.png" alt="FreeCAD - 3D parametric modeling software" class="app-thumbnail">
+                    <div class="app-name">FreeCAD</div>
+                </div>
 
-                    <div class="app-card" data-category="creative">
-                        <div class="app-image">
-                            <img src="images/apps/freecad.png" alt="FreeCAD">
-                        </div>
-                        <div class="app-info">
-                            <h4>FreeCAD</h4>
-                            <p>3D parametric modeling software</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/LibreOfficeCalc.png" alt="LibreOffice Calc - Spreadsheet application with rich functionality" class="app-thumbnail">
+                    <div class="app-name">LibreOffice Calc</div>
+                </div>
 
-                    <div class="app-card" data-category="office">
-                        <div class="app-image">
-                            <img src="images/apps/LibreOfficeCalc.png" alt="LibreOffice Calc">
-                        </div>
-                        <div class="app-info">
-                            <h4>LibreOffice Calc</h4>
-                            <p>Spreadsheet application with rich functionality</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/openshot.png" alt="OpenShot - Video editing and production" class="app-thumbnail">
+                    <div class="app-name">OpenShot</div>
+                </div>
 
-                    <div class="app-card" data-category="creative">
-                        <div class="app-image">
-                            <img src="images/apps/openshot.png" alt="OpenShot">
-                        </div>
-                        <div class="app-info">
-                            <h4>OpenShot</h4>
-                            <p>Video editing and production</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/octave.png" alt="Octave - Scientific programming language" class="app-thumbnail">
+                    <div class="app-name">Octave</div>
+                </div>
 
-                    <div class="app-card" data-category="scientific">
-                        <div class="app-image">
-                            <img src="images/apps/octave.png" alt="Octave">
-                        </div>
-                        <div class="app-info">
-                            <h4>Octave</h4>
-                            <p>Scientific programming language</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/r_studio.png" alt="RStudio - IDE for R programming and statistics" class="app-thumbnail">
+                    <div class="app-name">RStudio</div>
+                </div>
 
-                    <div class="app-card" data-category="development">
-                        <div class="app-image">
-                            <img src="images/apps/r_studio.png" alt="RStudio">
-                        </div>
-                        <div class="app-info">
-                            <h4>RStudio</h4>
-                            <p>IDE for R programming and statistics</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/zotero.png" alt="Zotero - Reference management software" class="app-thumbnail">
+                    <div class="app-name">Zotero</div>
+                </div>
 
-                    <div class="app-card" data-category="office">
-                        <div class="app-image">
-                            <img src="images/apps/zotero.png" alt="Zotero">
-                        </div>
-                        <div class="app-info">
-                            <h4>Zotero</h4>
-                            <p>Reference management software</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/vlc.png" alt="VLC Media Player - Multimedia player and streaming" class="app-thumbnail">
+                    <div class="app-name">VLC Media Player</div>
+                </div>
 
-                    <div class="app-card" data-category="creative">
-                        <div class="app-image">
-                            <img src="images/apps/vlc.png" alt="VLC">
-                        </div>
-                        <div class="app-info">
-                            <h4>VLC Media Player</h4>
-                            <p>Multimedia player and streaming</p>
-                        </div>
-                    </div>
-
-                    <div class="app-card" data-category="office">
-                        <div class="app-image">
-                            <img src="images/apps/frappe_books.png" alt="Frappe Books">
-                        </div>
-                        <div class="app-info">
-                            <h4>Frappe Books</h4>
-                            <p>Open-source accounting software</p>
-                        </div>
-                    </div>
+                <div class="app-card-clickable">
+                    <img src="images/apps/frappe_books.png" alt="Frappe Books - Open-source accounting software" class="app-thumbnail">
+                    <div class="app-name">Frappe Books</div>
                 </div>
             </div>
+        </div>
     </section>
+
+    <!-- Image Overlay Modal -->
+    <div id="imageOverlay" class="image-overlay">
+        <span class="overlay-close">&times;</span>
+        <img class="overlay-content" id="overlayImage">
+        <div class="overlay-caption" id="overlayCaption"></div>
+    </div>
 
     <!-- Team Section -->
     <section id="team" class="team-section">

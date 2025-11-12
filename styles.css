@@ -1752,95 +1752,130 @@ section {
     background: var(--bg-content-dark);
 }
 
-.app-categories {
-    margin-bottom: var(--spacing-lg);
-}
-
-.category-tabs {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-    flex-wrap: wrap;
-}
-
-.category-tab {
-    padding: 0.75rem 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.category-tab:hover {
-    background: var(--bg-card-hover);
-    color: var(--text-primary);
-    border-color: var(--primary);
-}
-
-.category-tab.active {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: #FFFFFF;
-    border-color: transparent;
-}
-
-.app-gallery {
+.app-gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
+    margin: 0 auto;
 }
 
-.app-card {
+.app-card-clickable {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    cursor: pointer;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    overflow: hidden;
     transition: var(--transition-normal);
+    display: flex;
+    flex-direction: column;
 }
 
-.app-card:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--primary);
+.app-card-clickable:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
 }
 
-.app-image {
+.app-thumbnail {
     width: 100%;
     height: 200px;
-    overflow: hidden;
-    position: relative;
-    background: var(--bg-tertiary);
-}
-
-.app-image img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     transition: var(--transition-normal);
 }
 
-.app-card:hover .app-image img {
-    transform: scale(1.1);
+.app-card-clickable:hover .app-thumbnail {
+    transform: scale(1.05);
 }
 
-.app-info {
-    padding: var(--spacing-md);
-}
-
-.app-info h4 {
-    font-size: 1.125rem;
-    margin-bottom: var(--spacing-xs);
+.app-name {
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text-primary);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
 }
 
-.app-info p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin: 0;
+/* Image Overlay Modal */
+.image-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    overflow: auto;
+}
+
+.image-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.overlay-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.overlay-close {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #ffffff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    z-index: 10000;
+}
+
+.overlay-close:hover,
+.overlay-close:focus {
+    color: var(--primary);
+}
+
+.overlay-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: var(--radius-md);
+    max-width: 80%;
+    font-size: 1.1rem;
 }
 
 /* ============================================
@@ -2333,6 +2368,11 @@ section {
         font-size: 2rem;
     }
     
+    .app-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
     .dataset-showcase {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -2374,8 +2414,11 @@ section {
     
     .dataset-stats-grid,
     .benchmark-grid,
-    .findings-grid,
-    .app-gallery {
+    .findings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .app-gallery-grid {
         grid-template-columns: 1fr;
     }
     
